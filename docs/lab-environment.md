@@ -2,13 +2,11 @@
 
 ## Purpose
 
-This document records only what can be supported by the surviving demo recording and project materials. It separates visible evidence from configuration details that were not recovered.
+This document records what can be supported by the surviving demo recording and project materials. It separates visible evidence from configuration details that were not recovered.
 
 ## Evidence visible in the demo
 
-The submitted MP4 is approximately 1 minute 41 seconds long, 1780 × 1080 pixels, and 30 frames per second.
-
-The recording visibly shows:
+The supplied MP4 is approximately 1 minute 41 seconds long, 1780 × 1080 pixels, and 30 frames per second.
 
 | Item | Observation |
 |---|---|
@@ -19,7 +17,7 @@ The recording visibly shows:
 | Scenario | A logistics/shipping-invoice-themed email |
 | Target-side outcome | A custom PoC screen illustrating simulated file encryption / system lockdown |
 
-The recording is a short demonstration, not a full build guide. It does not show every configuration step or the full VM settings.
+**Original demo:** [Watch the lab recording](https://drive.google.com/file/d/1euM46GtrGGJ4G-XNy_ITC11I61_uqxKK/view)
 
 ## Known versus unknown configuration
 
@@ -63,10 +61,8 @@ This is a high-level description only. The original scripts and exact commands w
 
 ## Recommended evidence to add if the lab is rebuilt
 
-To make the infrastructure reproducible, collect the following:
-
 - VMware VM settings screenshots (vCPU, RAM, disk, firmware, virtual NICs).
-- Virtual network editor screenshots showing VMnet mode and subnet.
+- Virtual Network Editor screenshots showing VMnet mode and subnet.
 - IP configuration from each guest.
 - A network diagram showing permitted flows.
 - Firewall policy export or screenshots.
