@@ -87,7 +87,7 @@ asahi-brewery-cyberattack-analysis/
 ├── README.md
 ├── assets/
 │   ├── README.md
-│   └── diagrams/
+│   ├── diagrams/
 │       ├── attack-chain.svg
 │       ├── demo-workflow.svg
 │       ├── defense-in-depth.svg
