@@ -429,7 +429,7 @@ To validate the initial access and encryption phases observed in the Asahi case 
 | **Instructor** | M.Sc. Phan Đình Duy Thông |
 | **Team Members** | Tiêu Hoàng Phúc · Nguyễn Nam Trường · Nguyễn Phú Đạt |
 | **Class** | 22DTHA1 — Major: Information Technology / Cybersecurity |
-| **Year** | 2025 |
+| **Year** | 2026 |
 
 ---
 
