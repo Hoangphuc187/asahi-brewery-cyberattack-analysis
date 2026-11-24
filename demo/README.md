@@ -2,6 +2,8 @@
 
 **[Watch the original demo recording](https://drive.google.com/file/d/1euM46GtrGGJ4G-XNy_ITC11I61_uqxKK/view)**
 
+![Recorded lab workflow diagram](../assets/diagrams/demo-workflow.svg)
+
 The surviving MP4 recording is approximately 1 minute 41 seconds long. It visibly shows a VMware Workstation environment with Kali Linux and Windows 10 x64.
 
 ## What is visible
