@@ -8,7 +8,7 @@ The original computer used to store the project was affected by malware. The ori
 - The original 16-slide presentation PDF.
 - The recorded VMware lab demonstration in MP4 format.
 
-This repository has been reconstructed from those surviving materials. The original report and MP4 remain linked to their supplied Google Docs / Drive locations. The presentation PDF is stored under `presentations/`. Selected visual previews are direct page renders from the original presentation PDF and are stored under `assets/slides/`.
+This repository has been reconstructed from those surviving materials. The original report and MP4 remain linked to their supplied Google Docs / Drive locations. The presentation PDF is stored under `presentations/`. Six selected visual previews are direct page renders from the original PDF (slides 6, 7, 8, 9, 10, and 14) and are stored under `assets/slides/`. The previously added placeholder artwork and fabricated demo preview have been removed.
 
 The repository does not claim to contain the original source code, scripts, VM exports, snapshots, network configuration, VLAN plan, firewall rules, or backup configuration.
 
@@ -18,7 +18,7 @@ The repository does not claim to contain the original source code, scripts, VM e
 |---|---|---|
 | Report | External Google Docs link in `reports/README.md` | Case-study background, attack-chain analysis, MITRE ATT&CK mapping, CIA assessment, risk matrix, NIST CSF mapping, impact analysis, and recommendations |
 | Presentation | `presentations/ASAHI_BREWERY_CYBERATTACK.pdf` | Original 16-slide presentation |
-| Slide previews | `assets/slides/` | Exact rendered images of original slides 6, 7, 8, 9, 10, and 14 |
+| Slide previews | `assets/slides/` | Direct page renders of original slides 6, 7, 8, 9, 10, and 14 |
 | Demo video | External Drive link in `demo/README.md` | Short VMware-based lab demonstration with Kali Linux and Windows 10 x64 |
 
 ## Important distinction: incident analysis versus lab PoC
