@@ -40,6 +40,12 @@ The report also contains MITRE ATT&CK technique mapping, a CIA Triad assessment,
 
 The original MP4 is available here: [Watch the lab demonstration](https://drive.google.com/file/d/1euM46GtrGGJ4G-XNy_ITC11I61_uqxKK/view).
 
+### Screenshot from the surviving demo
+
+![Redacted still from the custom lab PoC video](assets/screenshots/demo-poc-preview.jpg)
+
+<sub>Still extracted from the supplied MP4. Student alias and payment/contact details are redacted. The screen is a simulated PoC display, not evidence of Qilin malware or access to Asahi systems.</sub>
+
 ### Proposed VMware lab segmentation
 
 ![Proposed isolated VMware lab topology](assets/diagrams/lab-topology-proposed.svg)
