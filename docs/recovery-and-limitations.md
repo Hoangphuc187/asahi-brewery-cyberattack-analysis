@@ -8,15 +8,15 @@ The original computer used to store the project was affected by malware. The ori
 - The presentation slide deck in PDF format.
 - The recorded lab demonstration in MP4 format.
 
-This repository is rebuilt from those surviving materials. It does not claim to contain the original source code, scripts, VM exports, snapshots, network configuration, VLAN plan, firewall rules, or backup configuration.
+This repository is rebuilt from those surviving materials. The presentation PDF is stored under `presentations/`. The report and MP4 demo remain linked to the original Google Docs / Drive locations. A redacted still from the demo and portfolio diagrams are stored under `assets/`. The repository does not claim to contain the original source code, scripts, VM exports, snapshots, network configuration, VLAN plan, firewall rules, or backup configuration.
 
 ## What is preserved
 
 | Artifact | Preserved content |
 |---|---|
 | Report | Case-study background, attack-chain analysis, MITRE ATT&CK mapping, CIA assessment, risk matrix, NIST CSF mapping, impact analysis, and defensive recommendations |
-| Slides | Presentation summary, diagrams, risk assessment, and recommendations |
-| Demo video | A short VMware-based lab demonstration with Kali Linux and Windows 10 x64 |
+| Slides | Original 16-slide PDF stored in `presentations/`, plus supplementary vector diagrams |
+| Demo video | MP4 linked from `demo/README.md`; a redacted PoC still is stored under `assets/screenshots/` |
 
 ## Important distinction: incident analysis versus lab PoC
 
@@ -55,6 +55,6 @@ The case study is based on public reporting and project analysis. It is not an o
 
 ## Privacy before making the repository public
 
-The original report cover includes student names and student identification numbers. Before publishing the DOCX publicly, confirm that all listed contributors agree to public disclosure. If not, create a redacted public copy while retaining the original privately.
+The original report cover includes student names and student identification numbers. Before changing the Google Docs sharing permission to public viewer access, confirm that all listed contributors agree to public disclosure. Keep the original DOCX private or create an approved redacted public copy.
 
 Do not upload the separate IT Infrastructure résumé to this repository. It contains personal contact information and is not a project deliverable.
