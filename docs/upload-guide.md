@@ -1,53 +1,31 @@
-# Upload Guide for the Surviving Project Files
+# Repository Maintenance and Optional Binary Upload
 
-The repository documentation has been initialized. The original binary artifacts still need to be added from the local copies.
+## Current repository layout
 
-## 1. Use these filenames and paths
+- `presentations/ASAHI_BREWERY_CYBERATTACK.pdf` is the recovered presentation PDF stored directly in GitHub.
+- `reports/README.md` links to the original Google Docs report. The unredacted DOCX is not duplicated in the public repository because its cover contains student identification numbers.
+- `demo/README.md` links to the original MP4 recording in Google Drive. The video is linked externally to avoid storing a large binary in Git history.
+- `assets/diagrams/` contains vector diagrams created for this reconstructed project portfolio.
+- `docs/` contains the technical analysis, infrastructure proposal, lab rebuild guide, and recovery limitations.
 
-| Local file | GitHub repository path |
-|---|---|
-| ASAHI BREWERY CYBERATTACK.pdf (3.70 MB) | presentations/ASAHI_BREWERY_CYBERATTACK.pdf |
-| BaoCaoASAHI BREWERY CYBERATTACK.docx (1.34 MB) | reports/BaoCao_ASAHI_BREWERY_CYBERATTACK.docx |
-| Videodemo.mp4 (18.60 MB) | demo/Asahi_Cyberattack_Lab_Demo.mp4 |
+## Optional: mirror the report or video into GitHub
 
-Do not upload the separate file named _IT Infrastructure.pdf; it is a résumé and contains personal contact information.
+Only do this after confirming the public release is appropriate.
 
-## 2. Upload through the GitHub website
+1. Download the report or video from its Google Drive link.
+2. For the report, create a public copy with student identification numbers removed and obtain the contributors' approval.
+3. Open the repository and navigate to the appropriate folder.
+4. Choose **Add file → Upload files**, select the file, and commit it.
+5. Update this guide and the README so the repository path points to the new file.
 
-1. Open the repository: https://github.com/Hoangphuc187/asahi-brewery-cyberattack-analysis
-2. Open the **presentations** folder (it has already been created). Click **Add file → Upload files**.
-3. Select `ASAHI BREWERY CYBERATTACK.pdf` from your computer.
-4. Enter the commit message `Add original presentation slides` and click **Commit changes**.
-5. Return to the repository root, open **reports**, choose **Add file → Upload files**, select `BaoCaoASAHI BREWERY CYBERATTACK.docx`, and commit with `Add recovered project report`.
-6. Open **demo**, choose **Add file → Upload files**, select `Videodemo.mp4`, and commit with `Add surviving lab demonstration recording`.
-7. Open the README and click each deliverable link to verify it.
+The browser upload limit is 25 MiB per file. The original demo recording is approximately 18.6 MB, so it is below that limit. Avoid committing VM disk images, memory dumps, executable payloads, secrets, credentials, or unredacted logs.
 
-GitHub's browser upload limit is 25 MiB per file and supports up to 100 files in one upload. The supplied slide PDF (3.70 MB), DOCX report (1.34 MB), and MP4 demo (18.60 MB) are each below that per-file limit. See the official documentation: https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository
+## Optional Git command line
 
-## 3. Suggested commit messages
-
-- Add original presentation slides
-- Add recovered project report
-- Add surviving lab demonstration recording
-- Document lab topology and recovery limitations
-
-## 4. Verify after upload
-
-- Confirm that all three files appear in their intended folders.
-- Open the PDF from GitHub to verify that it renders.
-- Download the DOCX and make sure it opens.
-- Open the MP4 and check playback.
-- Confirm that README links point to the exact uploaded filenames.
-- Check that no passwords, tokens, private keys, live credentials, or unredacted personal data were uploaded.
-
-## 5. Optional: upload from Git command line
-
-If you prefer Git locally, clone the repository, copy the files into the folders above, then run:
+After downloading and reviewing the files, copy them into the appropriate folders and run:
 
 ~~~bash
-git add README.md docs reports presentations demo
-git commit -m "Add recovered Asahi project artifacts"
+git add reports demo presentations assets docs README.md
+git commit -m "Update recovered Asahi project portfolio"
 git push origin main
 ~~~
-
-Do not commit VM disk images or large memory snapshots. If a future artifact is over 100 MiB, review Git Large File Storage or GitHub Releases before adding it to the repository.
