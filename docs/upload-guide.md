@@ -6,23 +6,23 @@ The repository documentation has been initialized. The original binary artifacts
 
 | Local file | GitHub repository path |
 |---|---|
-| ASAHI BREWERY CYBERATTACK.pdf | presentations/ASAHI_BREWERY_CYBERATTACK.pdf |
-| BaoCaoASAHI BREWERY CYBERATTACK.docx | reports/BaoCao_ASAHI_BREWERY_CYBERATTACK.docx |
-| Videodemo.mp4 | demo/Asahi_Cyberattack_Lab_Demo.mp4 |
+| ASAHI BREWERY CYBERATTACK.pdf (3.70 MB) | presentations/ASAHI_BREWERY_CYBERATTACK.pdf |
+| BaoCaoASAHI BREWERY CYBERATTACK.docx (1.34 MB) | reports/BaoCao_ASAHI_BREWERY_CYBERATTACK.docx |
+| Videodemo.mp4 (18.60 MB) | demo/Asahi_Cyberattack_Lab_Demo.mp4 |
 
 Do not upload the separate file named _IT Infrastructure.pdf; it is a résumé and contains personal contact information.
 
 ## 2. Upload through the GitHub website
 
 1. Open the repository: https://github.com/Hoangphuc187/asahi-brewery-cyberattack-analysis
-2. Open the **presentations** folder. If it does not exist yet, choose **Add file → Create new file**, name it presentations/.gitkeep, and commit it. Repeat for **reports** and **demo** if necessary.
-3. Open a folder, choose **Add file → Upload files**, and select the corresponding local file.
-4. Enter a descriptive commit message, such as **Add original presentation slides**.
-5. Commit the upload to the main branch.
-6. Repeat for the report and demo video.
-7. Open the README and check that each artifact link resolves correctly.
+2. Open the **presentations** folder (it has already been created). Click **Add file → Upload files**.
+3. Select `ASAHI BREWERY CYBERATTACK.pdf` from your computer.
+4. Enter the commit message `Add original presentation slides` and click **Commit changes**.
+5. Return to the repository root, open **reports**, choose **Add file → Upload files**, select `BaoCaoASAHI BREWERY CYBERATTACK.docx`, and commit with `Add recovered project report`.
+6. Open **demo**, choose **Add file → Upload files**, select `Videodemo.mp4`, and commit with `Add surviving lab demonstration recording`.
+7. Open the README and click each deliverable link to verify it.
 
-GitHub's browser upload limit is 25 MiB per file and supports up to 100 files in one upload. The supplied slide PDF, DOCX report, and MP4 demo are each below that per-file limit. See the official documentation: https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository
+GitHub's browser upload limit is 25 MiB per file and supports up to 100 files in one upload. The supplied slide PDF (3.70 MB), DOCX report (1.34 MB), and MP4 demo (18.60 MB) are each below that per-file limit. See the official documentation: https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository
 
 ## 3. Suggested commit messages
 
