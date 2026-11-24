@@ -1,141 +1,132 @@
-# Asahi Brewery Cyberattack — Case Study & Lab Demonstration
+# Asahi Brewery Cyberattack Analysis
 
-**Cybersecurity case study | Ransomware analysis | MITRE ATT&CK | NIST CSF 2.0 | VMware lab PoC**
+**Cybersecurity Case Study · Ransomware Analysis · MITRE ATT&CK · NIST CSF 2.0 · VMware Lab PoC**
 
-> This repository is a **reconstructed project portfolio** based on the materials that remained after the original workstation was affected by malware. It is not a complete recovery of the original development environment.
+> **Recovery notice:** The original project workstation was affected by malware. The original working directory and development files could not be recovered. This repository was reconstructed from the surviving report, presentation PDF, and recorded lab demonstration. It is not a complete recovery of the original source project.
 
-## Repository recovery notice
+## Project at a glance
 
-The computer that stored the original project was infected by malware. After the incident, the original working files and development materials could not be recovered. The remaining materials are:
+This academic project analyzes the 2025 ransomware incident involving Asahi Group Holdings as described in the submitted report and presentation. It studies the reported attack chain, maps selected behaviors to MITRE ATT&CK, evaluates the impact using the CIA Triad and a risk matrix, and recommends controls aligned with NIST Cybersecurity Framework 2.0.
 
-- The project report (DOCX).
-- The presentation slides (PDF).
-- A recorded lab demonstration (MP4).
+The project also includes a short educational VMware lab demonstration with Kali Linux and Windows 10 x64. The recording shows a logistics-themed phishing scenario and a custom ransomware proof-of-concept (PoC). The PoC is a lab demonstration, **not Qilin's original malware and not a reproduction of Asahi's production network**.
 
-The original source files, scripts, VMware snapshots, detailed network settings, and configuration exports are not available in this recovery copy. The repository is therefore organized around the surviving evidence and clearly labels any new infrastructure material as a **proposal**, not as an implementation that has already been completed.
+## Quick access to original deliverables
 
-## Project overview
+| Deliverable | Link | Format / scope |
+|---|---|---|
+| Project report | [Open report](https://docs.google.com/document/d/1aTacFKg4T68DmGAslC-MS-hgPeNJAvHQ/edit) | Google Docs · 44-page report |
+| Presentation slides | [Open slides PDF](presentations/ASAHI_BREWERY_CYBERATTACK.pdf) | PDF · 16 slides |
+| Lab demonstration | [Watch demo video](https://drive.google.com/file/d/1euM46GtrGGJ4G-XNy_ITC11I61_uqxKK/view) | MP4 · approximately 1 min 41 sec |
 
-This academic project studies the ransomware incident involving Asahi Group Holdings described in the submitted report and presentation. It examines the incident from a cybersecurity perspective, reconstructs a high-level attack chain, maps selected behaviors to MITRE ATT&CK, evaluates business and security impact, and proposes defensive improvements.
+The report and video remain at the Google Drive / Google Docs locations supplied for the project. Access to those external links depends on their sharing permissions. The slide PDF is stored directly in this repository under `presentations/`.
 
-A separate recorded demonstration shows a small VMware lab with Kali Linux and Windows 10 x64. The video includes a logistics-invoice-themed phishing scenario and a custom ransomware proof-of-concept (PoC) that displays file-encryption/system-lockdown behavior. This is an **educational lab demonstration**; it is not Qilin's original malware and is not a reproduction of Asahi's production network.
+## Visual overview
 
-## Objectives
+### Attack-chain analysis
+
+![Five-stage attack chain analysis](assets/diagrams/attack-chain.svg)
+
+The attack-chain graphic is a high-level analytical reconstruction from the submitted report. It should not be interpreted as a forensic timeline independently verified from Asahi's internal telemetry.
+
+### MITRE ATT&CK, risk assessment, and NIST CSF
+
+![NIST Cybersecurity Framework 2.0 functions](assets/diagrams/nist-csf.svg)
+
+The report also contains MITRE ATT&CK technique mapping, a CIA Triad assessment, and a 5 × 5 likelihood-impact risk matrix. See [docs/attack-chain-and-mitre.md](docs/attack-chain-and-mitre.md) and [docs/risk-assessment.md](docs/risk-assessment.md).
+
+### Proposed VMware lab segmentation
+
+![Proposed isolated VMware lab topology](assets/diagrams/lab-topology-proposed.svg)
+
+This is a **proposed reference design for a future rebuild**, not the original VMnet/VLAN configuration. The original IP addresses, VMnet assignments, VLAN IDs, firewall rules, and backup configuration were not recovered.
+
+### Defense-in-Depth recommendations
+
+![Five-layer Defense-in-Depth model](assets/diagrams/defense-in-depth.svg)
+
+These are defensive recommendations, not controls that the project claims were deployed at Asahi or in the original lab.
+
+## Project objectives
 
 1. Describe the business and IT/OT context of the Asahi case study.
-2. Analyze the reported attack lifecycle from reconnaissance through ransomware impact.
-3. Map selected techniques to MITRE ATT&CK.
+2. Reconstruct the reported attack lifecycle from reconnaissance to ransomware impact.
+3. Map selected behaviors to MITRE ATT&CK.
 4. Assess confidentiality, integrity, and availability using the CIA Triad.
-5. Prioritize risks with a likelihood-impact matrix.
-6. Evaluate security gaps using NIST Cybersecurity Framework (CSF) functions.
-7. Recommend layered controls for identity, endpoint, network, monitoring, incident response, and recovery.
-8. Preserve the surviving report, slides, and demonstration in one organized repository.
+5. Prioritize risks through a likelihood-impact matrix.
+6. Review defensive gaps through NIST CSF 2.0.
+7. Recommend layered controls across identity, endpoint, network, monitoring, incident response, and recovery.
+8. Preserve the surviving deliverables and document the known limits of the recovered project.
 
-## What the demonstration shows
+## What the demo recording shows
 
-The submitted 1 minute 41 second recording visibly shows:
+The supplied recording visibly includes:
 
 - VMware Workstation with Kali Linux and Windows 10 x64 virtual machines.
 - A Kali-side demonstration workflow using Metasploit tooling.
 - A logistics/shipping-invoice-themed phishing email scenario.
 - A Windows-side custom PoC screen illustrating simulated file encryption and system-lockdown behavior.
 
-The recording is evidence of a controlled demonstration workflow only. It does not prove that the same tools, indicators, steps, or infrastructure were used inside Asahi. Do not run the PoC outside an isolated lab.
-
-## Analysis scope
-
-### High-level attack chain
-
-| Stage | Activity described in the report | Security concern |
-|---|---|---|
-| 1. Reconnaissance | Public-source discovery and identification of relevant IT/logistics roles | Exposure of organizational information |
-| 2. Initial access | Logistics-themed spear-phishing / credential-harvesting scenario | User awareness, email security, identity protection |
-| 3. Execution | User-triggered execution and scripting activity | Endpoint protection and application control |
-| 4. Lateral movement | Use of remote administration paths and shared services | Flat networks, credential hygiene, privileged access |
-| 5. Impact | Ransomware deployment and attempted impairment of recovery | Availability, backup isolation, incident response |
-
-This is the report's analytical reconstruction from public material and threat-intelligence references, not an independently verified forensic timeline from Asahi's internal systems.
-
-### Frameworks used
-
-- **MITRE ATT&CK:** technique mapping for phishing, execution, credential access, remote services, defense evasion, exfiltration, and impact.
-- **CIA Triad:** confidentiality, integrity, and availability impact.
-- **Risk Matrix:** 5 × 5 likelihood-versus-impact prioritization.
-- **NIST CSF 2.0:** Identify, Protect, Detect, Respond, Recover, and Govern.
-- **Defense-in-Depth:** endpoint, network, identity, monitoring, and recovery layers.
-
-See the detailed notes in the **docs/** directory, including the proposed VMnet/VLAN architecture and the step-by-step VMware Workstation rebuild guide.
-
-## Lab environment: evidence and boundaries
-
-### Confirmed in the surviving materials
-
-| Component | Evidence |
-|---|---|
-| Hypervisor | VMware Workstation is visible in the video |
-| Red-team VM | Kali Linux is visible in the video |
-| Target VM | Windows 10 x64 is visible in the video |
-| Demonstration | A phishing-themed scenario and custom ransomware PoC are visible |
-
-### Not recoverable / not verified
-
-The surviving materials do not establish the original VM CPU/RAM allocations, IP addresses, subnet, VMware network mode, VLAN IDs, virtual switch configuration, firewall rules, Windows security policy, logging pipeline, or backup configuration. These values are intentionally not invented.
-
-A proposed segmented lab design is documented separately in **docs/proposed-infrastructure.md**. It is a future/reference design, not a claim about the original lab.
+The video demonstrates a controlled educational workflow only. It does not prove that the same tools, payloads, indicators, commands, or infrastructure were used by the attackers against Asahi. See [demo/README.md](demo/README.md) for the demo scope and safety notes.
 
 ## Repository structure
-
-After the remaining assets are uploaded, the repository is intended to contain:
 
 ~~~text
 asahi-brewery-cyberattack-analysis/
 ├── README.md
+├── assets/
+│   ├── README.md
+│   └── diagrams/
+│       ├── attack-chain.svg
+│       ├── defense-in-depth.svg
+│       ├── lab-topology-proposed.svg
+│       └── nist-csf.svg
+├── demo/
+│   └── README.md
 ├── docs/
 │   ├── attack-chain-and-mitre.md
 │   ├── lab-environment.md
 │   ├── proposed-infrastructure.md
-│   ├── vmware-workstation-setup.md
-│   ├── risk-assessment.md
 │   ├── recovery-and-limitations.md
-│   └── upload-guide.md
-├── reports/
-│   └── BaoCao_ASAHI_BREWERY_CYBERATTACK.docx
+│   ├── risk-assessment.md
+│   ├── upload-guide.md
+│   └── vmware-workstation-setup.md
 ├── presentations/
 │   └── ASAHI_BREWERY_CYBERATTACK.pdf
-└── demo/
-    └── Asahi_Cyberattack_Lab_Demo.mp4
+└── reports/
+    └── README.md
 ~~~
 
-## Deliverables
+## Main topics covered
 
-The original surviving files are currently hosted in the Google Drive locations supplied with the project. The README links directly to those originals so a reviewer can open the materials without a separate GitHub upload.
+- **Attack Chain:** reconnaissance, initial access, execution, lateral movement, and impact.
+- **MITRE ATT&CK:** technique mapping for phishing, scripting, remote services, defense evasion, exfiltration, and impact.
+- **CIA Triad:** confidentiality, integrity, and availability.
+- **Risk Matrix:** likelihood and impact prioritization.
+- **NIST CSF 2.0:** Govern, Identify, Protect, Detect, Respond, and Recover.
+- **Defense-in-Depth:** endpoint, network, identity, monitoring, and recovery layers.
+- **Infrastructure design:** proposed isolated VMnet zones, firewall policy, logging, and backup/restore.
 
-| Artifact | Open original | Purpose |
-|---|---|---|
-| Project report (Google Docs) | [Open the report](https://docs.google.com/document/d/1aTacFKg4T68DmGAslC-MS-hgPeNJAvHQ/edit) | Full written case study and analysis |
-| Presentation slides (PDF) | [Open the presentation PDF](https://drive.google.com/file/d/1foPvm-eRklr1uCFEfKdINSEVJdePcYPx/view) | Summary of the research, findings, risk assessment, and recommendations |
-| Lab demonstration (MP4) | [Watch the demo video](https://drive.google.com/file/d/1euM46GtrGGJ4G-XNy_ITC11I61_uqxKK/view) | Visual evidence of the educational VMware lab demonstration |
-| Supporting documentation | [Browse docs/](docs/) | Scope, lab evidence, infrastructure proposal, and limitations |
+## Important recovery limitations
 
-**File hosting note:** The report, slide deck, and demo are linked to the exact Google Drive / Google Docs sources shared for this project. They have not been copied into Git history as binary assets. Anyone opening the external links may need the Drive owner's sharing permission. See [docs/upload-guide.md](docs/upload-guide.md) for the optional steps to mirror downloaded copies into this repository.
+The following original materials were not recovered and are not represented as implemented:
 
-## Key defensive recommendations
+- Original source code, scripts, and build files.
+- VMware VM exports, snapshots, and exact virtual hardware settings.
+- Original VMnet mode, VLAN IDs, IP addressing, routing, and firewall configuration.
+- SIEM/log collector setup and original event logs.
+- Backup destination, retention, isolation, and restore-test evidence.
 
-- Enforce phishing-resistant MFA for remote access and privileged accounts.
-- Use EDR/NGAV with centralized telemetry and alerting.
-- Apply least privilege and privileged access management.
-- Segment IT, OT, user, management, and backup networks.
-- Monitor suspicious PowerShell, remote service use, and unusual outbound transfers.
-- Maintain immutable/offline backups and test restoration regularly.
-- Prepare and exercise ransomware incident-response and business-continuity playbooks.
+The proposed network and backup design in `docs/` is clearly labelled as a future/reference design. Example VMnet IDs and IP subnets are illustrative only.
 
-## Limitations and responsible use
+The submitted report's limitations section says that a practical attack simulation had not been performed, while the separate surviving video shows a lab PoC. This repository treats the video as a supplementary educational demonstration and does not present it as a reproduction of the real Asahi incident.
 
-- This is an academic case study based on public information and the team's submitted materials. It is not an official Asahi forensic report.
-- Some incident details in the source documents are estimates, analytical assumptions, or time-dependent figures. Read them with the publication date and source context.
-- The report's limitations section says that a practical attack simulation had not been performed, while the separate surviving video shows a lab PoC. This repository treats the video as a supplementary demonstration artifact and does not present it as a reproduction of the real incident.
-- The original source code and detailed lab configuration were not recovered.
-- The demonstration is for education in an isolated, authorized environment only. Do not execute payloads or test against third-party systems.
+## Privacy and responsible use
+
+- The source DOCX report contains student names and student identification numbers. The original report is therefore linked through its existing Google Docs location instead of being copied into the public repository. Confirm sharing permission with all contributors before making the Google Doc public.
+- Do not upload the separate IT Infrastructure résumé; it contains personal contact information.
+- This is an academic case study based on public information and submitted project materials, not an official Asahi forensic report.
+- Some incident figures in the report and slides are estimates or time-dependent. Preserve their original context and verify primary sources before reusing them externally.
+- Use the lab demonstration only in an isolated, authorized environment. Do not execute payloads or test against third-party systems.
 
 ## Project team
 
@@ -147,8 +138,8 @@ The original report lists the following student contributors:
 
 Instructor: ThS. Phan Đình Duy Thông  
 Institution: Ho Chi Minh City University of Technology (HUTECH)  
-Original report/presentation: 2025
+Original report and presentation: 2025
 
 ---
 
-**Recovery status:** documentation structure initialized; surviving binary artifacts still need to be uploaded. See **docs/upload-guide.md** for the exact filenames and steps.
+**Repository status:** recovered presentation PDF, reconstructed technical documentation, and original external links to the report and demo are organized in this repository.
