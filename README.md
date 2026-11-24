@@ -88,11 +88,13 @@ asahi-brewery-cyberattack-analysis/
 ├── assets/
 │   ├── README.md
 │   ├── diagrams/
-│       ├── attack-chain.svg
-│       ├── demo-workflow.svg
-│       ├── defense-in-depth.svg
-│       ├── lab-topology-proposed.svg
-│       └── nist-csf.svg
+│   │   ├── attack-chain.svg
+│   │   ├── demo-workflow.svg
+│   │   ├── defense-in-depth.svg
+│   │   ├── lab-topology-proposed.svg
+│   │   └── nist-csf.svg
+│   └── screenshots/
+│       └── demo-poc-preview.jpg
 ├── demo/
 │   └── README.md
 ├── docs/
