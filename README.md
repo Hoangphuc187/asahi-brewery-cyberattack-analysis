@@ -108,14 +108,16 @@ asahi-brewery-cyberattack-analysis/
 
 ## Deliverables
 
-| Artifact | Repository path | Purpose |
-|---|---|---|
-| Project report (DOCX) | [reports/BaoCao_ASAHI_BREWERY_CYBERATTACK.docx](reports/BaoCao_ASAHI_BREWERY_CYBERATTACK.docx) | Full written case study and analysis |
-| Presentation (PDF) | [presentations/ASAHI_BREWERY_CYBERATTACK.pdf](presentations/ASAHI_BREWERY_CYBERATTACK.pdf) | Summary of the research, findings, risk assessment, and recommendations |
-| Demo recording (MP4) | [demo/Asahi_Cyberattack_Lab_Demo.mp4](demo/Asahi_Cyberattack_Lab_Demo.mp4) | Visual evidence of the educational VMware lab demonstration |
-| Documentation (Markdown) | [docs/](docs/) | Scope, lab evidence, infrastructure proposal, and limitations |
+The original surviving files are currently hosted in the Google Drive locations supplied with the project. The README links directly to those originals so a reviewer can open the materials without a separate GitHub upload.
 
-The three binary paths are prepared in this repository. Upload the surviving local files using [docs/upload-guide.md](docs/upload-guide.md) to make the links above active.
+| Artifact | Open original | Purpose |
+|---|---|---|
+| Project report (Google Docs) | [Open the report](https://docs.google.com/document/d/1aTacFKg4T68DmGAslC-MS-hgPeNJAvHQ/edit) | Full written case study and analysis |
+| Presentation slides (PDF) | [Open the presentation PDF](https://drive.google.com/file/d/1foPvm-eRklr1uCFEfKdINSEVJdePcYPx/view) | Summary of the research, findings, risk assessment, and recommendations |
+| Lab demonstration (MP4) | [Watch the demo video](https://drive.google.com/file/d/1euM46GtrGGJ4G-XNy_ITC11I61_uqxKK/view) | Visual evidence of the educational VMware lab demonstration |
+| Supporting documentation | [Browse docs/](docs/) | Scope, lab evidence, infrastructure proposal, and limitations |
+
+**File hosting note:** The report, slide deck, and demo are linked to the exact Google Drive / Google Docs sources shared for this project. They have not been copied into Git history as binary assets. Anyone opening the external links may need the Drive owner's sharing permission. See [docs/upload-guide.md](docs/upload-guide.md) for the optional steps to mirror downloaded copies into this repository.
 
 ## Key defensive recommendations
 
