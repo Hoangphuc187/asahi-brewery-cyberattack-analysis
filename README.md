@@ -107,14 +107,14 @@ asahi-brewery-cyberattack-analysis/
 
 ## Deliverables
 
-| Artifact | Purpose |
-|---|---|
-| Project report (DOCX) | Full written case study and analysis |
-| Presentation (PDF) | Summary of the research, findings, risk assessment, and recommendations |
-| Demo recording (MP4) | Visual evidence of the educational VMware lab demonstration |
-| Documentation (Markdown) | Clear explanation of scope, lab evidence, infrastructure proposal, and limitations |
+| Artifact | Repository path | Purpose |
+|---|---|---|
+| Project report (DOCX) | [reports/BaoCao_ASAHI_BREWERY_CYBERATTACK.docx](reports/BaoCao_ASAHI_BREWERY_CYBERATTACK.docx) | Full written case study and analysis |
+| Presentation (PDF) | [presentations/ASAHI_BREWERY_CYBERATTACK.pdf](presentations/ASAHI_BREWERY_CYBERATTACK.pdf) | Summary of the research, findings, risk assessment, and recommendations |
+| Demo recording (MP4) | [demo/Asahi_Cyberattack_Lab_Demo.mp4](demo/Asahi_Cyberattack_Lab_Demo.mp4) | Visual evidence of the educational VMware lab demonstration |
+| Documentation (Markdown) | [docs/](docs/) | Scope, lab evidence, infrastructure proposal, and limitations |
 
-The binary files are being restored from the surviving local copies. Until they are uploaded into the paths above, their links will not appear in the repository.
+The three binary paths are prepared in this repository. Upload the surviving local files using [docs/upload-guide.md](docs/upload-guide.md) to make the links above active.
 
 ## Key defensive recommendations
 
