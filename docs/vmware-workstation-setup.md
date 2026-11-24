@@ -14,7 +14,7 @@
 | **Hypervisor** | VMware Workstation Pro / Player 17+ | VMware Workstation Pro 17.5+ *(supports Snapshots & Virtual Network Editor)* |
 | **Host CPU & RAM** | 4 cores / 8 GB RAM | 8+ cores / 16 GB RAM |
 | **Free Disk Space** | 60 GB SSD | 100+ GB NVMe SSD |
-| **Attacker Image** | Kali Linux 2024.x / 2025.x Pre-built VMware VM or ISO | Official Kali Linux VMware image (`kali.org`) |
+| **Attacker Image** | Kali Linux 2025.x / 2026.x Pre-built VMware VM or ISO | Official Kali Linux VMware image (`kali.org`) |
 | **Victim Image** | Windows 10 22H2 x64 Evaluation ISO | Windows 10 Enterprise Evaluation x64 (Build 19045) |
 
 ---

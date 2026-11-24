@@ -54,3 +54,4 @@ Các chi tiết cấu hình chưa thu hồi không được mô tả là bằng 
 | **GVHD** | Ths. Phan Đình Duy Thông |
 | **Nhóm** | Tiêu Hoàng Phúc · Nguyễn Nam Trường · Nguyễn Phú Đạt |
 | **Lớp** | 22DTHA1 — Ngành: CNTT / Chuyên ngành: An ninh mạng |
+| **Năm** | 2026 |
