@@ -4,6 +4,12 @@
 
 ![Recorded lab workflow diagram](../assets/diagrams/demo-workflow.svg)
 
+### Demo frame
+
+![Redacted screenshot from the custom lab PoC](../assets/screenshots/demo-poc-preview.jpg)
+
+<sub>Extracted from the supplied video; the student alias and payment/contact details are redacted. The lock-screen is a simulated PoC screen.</sub>
+
 The surviving MP4 recording is approximately 1 minute 41 seconds long. It visibly shows a VMware Workstation environment with Kali Linux and Windows 10 x64.
 
 ## What is visible
