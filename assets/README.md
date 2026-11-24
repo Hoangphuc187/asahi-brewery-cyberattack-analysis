@@ -1,15 +1,14 @@
-# Visual Assets
+# Original Presentation Images
 
-This directory contains original vector diagrams prepared for the reconstructed project portfolio.
+This folder contains image previews extracted directly from the original 16-slide PDF presentation. Each image is a page render of the original slide; no diagram has been redrawn or replaced with generated artwork.
 
-| Diagram | Purpose |
-|---|---|
-| [Attack Chain](diagrams/attack-chain.svg) | Five-stage analytical reconstruction |
-| [NIST CSF 2.0](diagrams/nist-csf.svg) | Six-function framework overview |
-| [Proposed VMware Lab Topology](diagrams/lab-topology-proposed.svg) | Isolated VMnet security zones for a future rebuild |
-| [Defense-in-Depth](diagrams/defense-in-depth.svg) | Five layers of defensive recommendations |
-| [Demo Workflow](diagrams/demo-workflow.svg) | High-level visual summary of the supplied lab recording |
+| Image | Original PDF page | Topic |
+|---|---:|---|
+| [slide-06-attack-chain.webp](slides/slide-06-attack-chain.webp) | 6 | Attack Chain |
+| [slide-07-mitre-attack.webp](slides/slide-07-mitre-attack.webp) | 7 | MITRE ATT&CK |
+| [slide-08-cia-triad.webp](slides/slide-08-cia-triad.webp) | 8 | CIA Triad |
+| [slide-09-risk-matrix.webp](slides/slide-09-risk-matrix.webp) | 9 | Risk Matrix |
+| [slide-10-nist-csf.webp](slides/slide-10-nist-csf.webp) | 10 | NIST Cybersecurity Framework |
+| [slide-14-defense-in-depth.webp](slides/slide-14-defense-in-depth.webp) | 14 | Five-layer security model |
 
-These are portfolio illustrations, not screenshots of Asahi's production environment. The original presentation PDF is in `presentations/`; the original lab recording remains linked from `demo/README.md`.
-
-A redacted still extracted from the surviving MP4 is stored in `screenshots/demo-poc-preview.jpg`. It illustrates the custom lab PoC screen and is not the original Qilin malware.
+These are compact README previews. For full slide quality, open the original PDF at [presentations/ASAHI_BREWERY_CYBERATTACK.pdf](../presentations/ASAHI_BREWERY_CYBERATTACK.pdf).
