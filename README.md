@@ -1,84 +1,71 @@
 # Asahi Brewery Cyberattack Analysis
 
-**Cybersecurity Case Study · Ransomware Analysis · MITRE ATT&CK · NIST CSF 2.0 · VMware Lab PoC**
+**Cybersecurity Case Study · Ransomware Analysis · MITRE ATT&CK · CIA Triad · Risk Assessment · NIST CSF**
 
-> **Recovery notice:** The original project workstation was affected by malware. The original working directory and development files could not be recovered. This repository was reconstructed from the surviving report, presentation PDF, and recorded lab demonstration. It is not a complete recovery of the original source project.
+> **Project recovery note:** The original computer that stored the project was infected by malware. The original working directory and development files could not be recovered. This portfolio has been reconstructed from the surviving written report, the original 16-slide presentation PDF, and the recorded lab demonstration. It does not claim to restore the missing source code, scripts, VM snapshots, or original network configuration.
 
-## Project at a glance
+## Project deliverables
 
-This academic project analyzes the 2025 ransomware incident involving Asahi Group Holdings as described in the submitted report and presentation. It studies the reported attack chain, maps selected behaviors to MITRE ATT&CK, evaluates the impact using the CIA Triad and a risk matrix, and recommends controls aligned with NIST Cybersecurity Framework 2.0.
-
-The project also includes a short educational VMware lab demonstration with Kali Linux and Windows 10 x64. The recording shows a logistics-themed phishing scenario and a custom ransomware proof-of-concept (PoC). The PoC is a lab demonstration, **not Qilin's original malware and not a reproduction of Asahi's production network**.
-
-## Quick access to original deliverables
-
-| Deliverable | Link | Format / scope |
+| Deliverable | Access | Description |
 |---|---|---|
-| Project report | [Open report](https://docs.google.com/document/d/1aTacFKg4T68DmGAslC-MS-hgPeNJAvHQ/edit) | Google Docs · 44-page report |
-| Presentation slides | [Open slides PDF](presentations/ASAHI_BREWERY_CYBERATTACK.pdf) | PDF · 16 slides |
-| Lab demonstration | [Watch demo video](https://drive.google.com/file/d/1euM46GtrGGJ4G-XNy_ITC11I61_uqxKK/view) | MP4 · approximately 1 min 41 sec |
+| Written report | [Open the report](https://docs.google.com/document/d/1aTacFKg4T68DmGAslC-MS-hgPeNJAvHQ/edit) | Original Google Docs report |
+| Presentation | [Open the PDF in this repository](presentations/ASAHI_BREWERY_CYBERATTACK.pdf) | Original 16-slide presentation |
+| Lab demo | [Watch the original video](https://drive.google.com/file/d/1euM46GtrGGJ4G-XNy_ITC11I61_uqxKK/view) | Recorded VMware / Kali Linux / Windows 10 demonstration |
 
-The report and video remain at the Google Drive / Google Docs locations supplied for the project. Access to those external links depends on their sharing permissions. The slide PDF is stored directly in this repository under `presentations/`.
+The report and demo remain at the original Google Docs / Drive links supplied for the project. Their availability depends on the owner's sharing settings. The presentation PDF is stored directly in this repository.
 
-## Visual overview
+## Original slide images
 
-### Attack-chain analysis
+The following previews are **direct page renders from the original presentation PDF**, not newly generated or redrawn illustrations. Open the PDF above to view each slide at full resolution.
 
-![Five-stage attack chain analysis](assets/diagrams/attack-chain.svg)
+<table>
+  <tr>
+    <td width="50%">
+      <strong>Slide 6 — Attack Chain</strong><br/>
+      <a href="../blob/main/presentations/ASAHI_BREWERY_CYBERATTACK.pdf"><img src="assets/slides/slide-06-attack-chain.webp" alt="Original slide 6: Attack Chain" width="100%"/></a>
+    </td>
+    <td width="50%">
+      <strong>Slide 7 — MITRE ATT&CK</strong><br/>
+      <a href="../blob/main/presentations/ASAHI_BREWERY_CYBERATTACK.pdf"><img src="assets/slides/slide-07-mitre-attack.webp" alt="Original slide 7: MITRE ATT&CK" width="100%"/></a>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <strong>Slide 8 — CIA Triad</strong><br/>
+      <a href="../blob/main/presentations/ASAHI_BREWERY_CYBERATTACK.pdf"><img src="assets/slides/slide-08-cia-triad.webp" alt="Original slide 8: CIA Triad" width="100%"/></a>
+    </td>
+    <td width="50%">
+      <strong>Slide 9 — Risk Matrix</strong><br/>
+      <a href="../blob/main/presentations/ASAHI_BREWERY_CYBERATTACK.pdf"><img src="assets/slides/slide-09-risk-matrix.webp" alt="Original slide 9: Risk Matrix" width="100%"/></a>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <strong>Slide 10 — NIST Cybersecurity Framework</strong><br/>
+      <a href="../blob/main/presentations/ASAHI_BREWERY_CYBERATTACK.pdf"><img src="assets/slides/slide-10-nist-csf.webp" alt="Original slide 10: NIST Cybersecurity Framework" width="100%"/></a>
+    </td>
+    <td width="50%">
+      <strong>Slide 14 — Five-Layer Security Model</strong><br/>
+      <a href="../blob/main/presentations/ASAHI_BREWERY_CYBERATTACK.pdf"><img src="assets/slides/slide-14-defense-in-depth.webp" alt="Original slide 14: Five-Layer Security Model" width="100%"/></a>
+    </td>
+  </tr>
+</table>
 
-The attack-chain graphic is a high-level analytical reconstruction from the submitted report. It should not be interpreted as a forensic timeline independently verified from Asahi's internal telemetry.
+## Project overview
 
-### MITRE ATT&CK, risk assessment, and NIST CSF
+This academic project studies the ransomware incident involving Asahi Group Holdings as described in the submitted report and presentation. The analysis covers the reported attack chain, selected MITRE ATT&CK techniques, CIA Triad impact, a likelihood-impact risk matrix, NIST Cybersecurity Framework assessment, business impact, and defensive recommendations.
 
-![NIST Cybersecurity Framework 2.0 functions](assets/diagrams/nist-csf.svg)
+The separate lab recording shows a controlled educational demonstration using VMware Workstation, Kali Linux, and Windows 10 x64. The demo includes a logistics-themed phishing scenario and a custom ransomware proof-of-concept (PoC) display. It is **not Qilin's original malware** and does not reproduce Asahi's production environment.
 
-The report also contains MITRE ATT&CK technique mapping, a CIA Triad assessment, and a 5 × 5 likelihood-impact risk matrix. See [docs/attack-chain-and-mitre.md](docs/attack-chain-and-mitre.md) and [docs/risk-assessment.md](docs/risk-assessment.md).
+## Main topics
 
-### Recorded lab demonstration
-
-![Recorded VMware lab demonstration workflow](assets/diagrams/demo-workflow.svg)
-
-The original MP4 is available here: [Watch the lab demonstration](https://drive.google.com/file/d/1euM46GtrGGJ4G-XNy_ITC11I61_uqxKK/view).
-
-### Screenshot from the surviving demo
-
-![Redacted still from the custom lab PoC video](assets/screenshots/demo-poc-preview.jpg)
-
-<sub>Still extracted from the supplied MP4. Student alias and payment/contact details are redacted. The screen is a simulated PoC display, not evidence of Qilin malware or access to Asahi systems.</sub>
-
-### Proposed VMware lab segmentation
-
-![Proposed isolated VMware lab topology](assets/diagrams/lab-topology-proposed.svg)
-
-This is a **proposed reference design for a future rebuild**, not the original VMnet/VLAN configuration. The original IP addresses, VMnet assignments, VLAN IDs, firewall rules, and backup configuration were not recovered.
-
-### Defense-in-Depth recommendations
-
-![Five-layer Defense-in-Depth model](assets/diagrams/defense-in-depth.svg)
-
-These are defensive recommendations, not controls that the project claims were deployed at Asahi or in the original lab.
-
-## Project objectives
-
-1. Describe the business and IT/OT context of the Asahi case study.
-2. Reconstruct the reported attack lifecycle from reconnaissance to ransomware impact.
-3. Map selected behaviors to MITRE ATT&CK.
-4. Assess confidentiality, integrity, and availability using the CIA Triad.
-5. Prioritize risks through a likelihood-impact matrix.
-6. Review defensive gaps through NIST CSF 2.0.
-7. Recommend layered controls across identity, endpoint, network, monitoring, incident response, and recovery.
-8. Preserve the surviving deliverables and document the known limits of the recovered project.
-
-## What the demo recording shows
-
-The supplied recording visibly includes:
-
-- VMware Workstation with Kali Linux and Windows 10 x64 virtual machines.
-- A Kali-side demonstration workflow using Metasploit tooling.
-- A logistics/shipping-invoice-themed phishing email scenario.
-- A Windows-side custom PoC screen illustrating simulated file encryption and system-lockdown behavior.
-
-The video demonstrates a controlled educational workflow only. It does not prove that the same tools, payloads, indicators, commands, or infrastructure were used by the attackers against Asahi. See [demo/README.md](demo/README.md) for the demo scope and safety notes.
+- **Attack Chain:** reconnaissance, phishing-based initial access, execution, lateral movement, and ransomware impact.
+- **MITRE ATT&CK:** technique mapping as presented in the submitted report and slides.
+- **CIA Triad:** confidentiality, integrity, and availability impact.
+- **Risk Matrix:** likelihood and impact prioritization.
+- **NIST Cybersecurity Framework:** assessment and recommendations.
+- **Defense-in-Depth:** five-layer defensive model presented in the original slides.
+- **Lab evidence:** what can and cannot be confirmed from the surviving demo video.
 
 ## Repository structure
 
@@ -87,14 +74,13 @@ asahi-brewery-cyberattack-analysis/
 ├── README.md
 ├── assets/
 │   ├── README.md
-│   ├── diagrams/
-│   │   ├── attack-chain.svg
-│   │   ├── demo-workflow.svg
-│   │   ├── defense-in-depth.svg
-│   │   ├── lab-topology-proposed.svg
-│   │   └── nist-csf.svg
-│   └── screenshots/
-│       └── demo-poc-preview.jpg
+│   └── slides/
+│       ├── slide-06-attack-chain.webp
+│       ├── slide-07-mitre-attack.webp
+│       ├── slide-08-cia-triad.webp
+│       ├── slide-09-risk-matrix.webp
+│       ├── slide-10-nist-csf.webp
+│       └── slide-14-defense-in-depth.webp
 ├── demo/
 │   └── README.md
 ├── docs/
@@ -113,41 +99,29 @@ asahi-brewery-cyberattack-analysis/
     └── README.md
 ~~~
 
-## Main topics covered
+## Recovery boundaries
 
-- **Attack Chain:** reconnaissance, initial access, execution, lateral movement, and impact.
-- **MITRE ATT&CK:** technique mapping for phishing, scripting, remote services, defense evasion, exfiltration, and impact.
-- **CIA Triad:** confidentiality, integrity, and availability.
-- **Risk Matrix:** likelihood and impact prioritization.
-- **NIST CSF 2.0:** Govern, Identify, Protect, Detect, Respond, and Recover.
-- **Defense-in-Depth:** endpoint, network, identity, monitoring, and recovery layers.
-- **Infrastructure design:** proposed isolated VMnet zones, firewall policy, logging, and backup/restore.
+The following original artifacts were not recovered:
 
-## Important recovery limitations
+- Original source code, scripts, and development files.
+- VMware VM exports, snapshots, and original VM hardware settings.
+- Original VMnet mode, IP addressing, VLAN IDs, routes, and firewall configuration.
+- Original SIEM/log-collector configuration and system logs.
+- Backup destinations, schedules, isolation settings, and restore-test evidence.
 
-The following original materials were not recovered and are not represented as implemented:
+The network and backup details in the documentation are therefore labelled as proposals or rebuild guidance. Example VLAN IDs, IP addresses, VMnet names, and resource allocations must not be described as the original implementation.
 
-- Original source code, scripts, and build files.
-- VMware VM exports, snapshots, and exact virtual hardware settings.
-- Original VMnet mode, VLAN IDs, IP addressing, routing, and firewall configuration.
-- SIEM/log collector setup and original event logs.
-- Backup destination, retention, isolation, and restore-test evidence.
-
-The proposed network and backup design in `docs/` is clearly labelled as a future/reference design. Example VMnet IDs and IP subnets are illustrative only.
-
-The submitted report's limitations section says that a practical attack simulation had not been performed, while the separate surviving video shows a lab PoC. This repository treats the video as a supplementary educational demonstration and does not present it as a reproduction of the real Asahi incident.
+The written report's limitations section and the separate surviving demo recording have different scopes. This repository treats the video as a supplementary lab PoC and does not claim that it is a reproduction of the real incident.
 
 ## Privacy and responsible use
 
-- The source DOCX report contains student names and student identification numbers. The original report is therefore linked through its existing Google Docs location instead of being copied into the public repository. Confirm sharing permission with all contributors before making the Google Doc public.
-- Do not upload the separate IT Infrastructure résumé; it contains personal contact information.
-- This is an academic case study based on public information and submitted project materials, not an official Asahi forensic report.
-- Some incident figures in the report and slides are estimates or time-dependent. Preserve their original context and verify primary sources before reusing them externally.
+- The original report contains contributor names and student identification numbers. The public repository links to the source Google Docs document rather than duplicating the unredacted DOCX. Obtain all contributors' agreement before changing its sharing permissions to public access.
+- Do not upload the separate IT Infrastructure résumé; it contains personal contact details.
+- This is an academic case study based on public information and the team's project materials, not an official Asahi forensic report.
+- Incident figures and claims should be read with their original date, definition, and cited source.
 - Use the lab demonstration only in an isolated, authorized environment. Do not execute payloads or test against third-party systems.
 
 ## Project team
-
-The original report lists the following student contributors:
 
 - Tiêu Hoàng Phúc
 - Nguyễn Nam Trường
@@ -156,7 +130,3 @@ The original report lists the following student contributors:
 Instructor: ThS. Phan Đình Duy Thông  
 Institution: Ho Chi Minh City University of Technology (HUTECH)  
 Original report and presentation: 2025
-
----
-
-**Repository status:** recovered presentation PDF, reconstructed technical documentation, and original external links to the report and demo are organized in this repository.
