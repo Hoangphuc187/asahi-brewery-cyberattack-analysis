@@ -11,3 +11,5 @@ This directory contains original vector diagrams prepared for the reconstructed 
 | [Demo Workflow](diagrams/demo-workflow.svg) | High-level visual summary of the supplied lab recording |
 
 These are portfolio illustrations, not screenshots of Asahi's production environment. The original presentation PDF is in `presentations/`; the original lab recording remains linked from `demo/README.md`.
+
+A redacted still extracted from the surviving MP4 is stored in `screenshots/demo-poc-preview.jpg`. It illustrates the custom lab PoC screen and is not the original Qilin malware.
