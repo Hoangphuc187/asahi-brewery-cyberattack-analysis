@@ -64,7 +64,7 @@ This is the report's analytical reconstruction from public material and threat-i
 - **NIST CSF 2.0:** Identify, Protect, Detect, Respond, Recover, and Govern.
 - **Defense-in-Depth:** endpoint, network, identity, monitoring, and recovery layers.
 
-See the detailed notes in the **docs/** directory.
+See the detailed notes in the **docs/** directory, including the proposed VMnet/VLAN architecture and the step-by-step VMware Workstation rebuild guide.
 
 ## Lab environment: evidence and boundaries
 
@@ -94,6 +94,7 @@ asahi-brewery-cyberattack-analysis/
 │   ├── attack-chain-and-mitre.md
 │   ├── lab-environment.md
 │   ├── proposed-infrastructure.md
+│   ├── vmware-workstation-setup.md
 │   ├── risk-assessment.md
 │   ├── recovery-and-limitations.md
 │   └── upload-guide.md
