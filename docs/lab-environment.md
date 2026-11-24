@@ -1,73 +1,79 @@
-# Lab Environment — Surviving Evidence
+# 🧪 Lab Environment
 
-## Purpose
-
-This document records what can be supported by the surviving demo recording and project materials. It separates visible evidence from configuration details that were not recovered.
+This document describes the isolated laboratory environment used to demonstrate the spear-phishing delivery, reverse-shell command-and-control (C2), and file encryption workflow associated with the Asahi Brewery cyberattack case study. To preserve academic accuracy, it explicitly distinguishes between direct visual observations from the supplied demo recording and reconstructed configuration details that were not recovered.
 
 ## Evidence visible in the demo
 
 The supplied MP4 is approximately 1 minute 41 seconds long, 1780 × 1080 pixels, and 30 frames per second.
 
 | Item | Observation |
-|---|---|
+| :--- | :--- |
 | Virtualization platform | VMware Workstation |
 | Virtual machine 1 | Kali Linux |
 | Virtual machine 2 | Windows 10 x64 |
-| Red-team tooling | Metasploit tooling is visible in the Kali-side terminal |
-| Scenario | A logistics/shipping-invoice-themed email |
-| Target-side outcome | A custom PoC screen illustrating simulated file encryption / system lockdown |
 
-**Original demo:** [Watch the lab recording](https://drive.google.com/file/d/1euM46GtrGGJ4G-XNy_ITC11I61_uqxKK/view)
+> [!NOTE]
+> **Archive limitation:** Due to a local workstation malware incident during post-lab cleanup, the original VMware `.vmx`/`.vmdk` snapshots, PoC source scripts, and compiled binaries were purged. Configuration details not directly visible as host-level metadata are documented below as **reconstructed** from [`../demo/Demo_Full.mp4`](../demo/Demo_Full.mp4) and the final project report.
 
-## Known versus unknown configuration
+---
 
-| Configuration item | Status |
-|---|---|
-| VMware Workstation | Visible |
-| Kali Linux VM | Visible |
-| Windows 10 x64 VM | Visible |
-| VM CPU / RAM / disk allocation | Not recovered |
-| VMware network mode (Host-only / NAT / Bridged) | Not confirmed by the recording |
-| IP addressing and subnet | Not recovered |
-| VLAN IDs and virtual-switch layout | Not recovered |
-| Firewall rules between VMs | Not recovered |
-| Windows local security policy | Not recovered |
-| Central logging / SIEM configuration | Not shown |
-| Backup destination, schedule, and restore test | Not recovered |
-| Original VM snapshots or exported VM files | Not available in the recovery set |
+## Reconstructed Lab Topology
 
-Do not fill the unknown fields with guessed values. If original screenshots, VM settings, or notes are later recovered, update this document and identify the evidence used.
+All simulation activities were performed inside an isolated **VMware Host-Only** virtual network (`192.168.23.0/24`) with no external internet routing, NAT, or bridged adapters enabled.
 
-## Demonstration workflow at a high level
+```
+╔═══════════════════════════════════════════════════════════════╗
+║                  VMware Host-Only Network                     ║
+║                   192.168.23.0/24 (Isolated)                  ║
+║                                                               ║
+║   ┌───────────────────┐         ┌───────────────────────┐     ║
+║   │  ATTACKER         │         │  VICTIM               │     ║
+║   │  Kali Linux       │◄───────►│  Windows 10 x64       │     ║
+║   │  192.168.23.130   │  TCP    │  192.168.23.141       │     ║
+║   │                   │  :4444  │  DESKTOP-4K30A40      │     ║
+║   │  Tools:           │         │  User: ACERNITRO      │     ║
+║   │  - msfvenom       │         │                       │     ║
+║   │  - msfconsole     │         │  Target Desktop Data: │     ║
+║   │  - sendEmail      │         │  - TaiLieu.txt        │     ║
+║   └───────────────────┘         │  - *.docx, *.xlsx     │     ║
+║                                 │  - *.pdf, *.dwg       │     ║
+║                                 └───────────────────────┘     ║
+╚═══════════════════════════════════════════════════════════════╝
+```
 
-1. Start the VMware lab and review the Kali Linux and Windows 10 x64 guests.
-2. Prepare the educational phishing-themed scenario.
-3. Use the lab tooling to demonstrate the controlled test workflow.
-4. Observe the Windows-side PoC behavior and the simulated lockdown screen.
-5. Stop the demonstration and restore the lab from a known-clean state.
+### Node Roles & Addressing
 
-This is a high-level description only. The original scripts and exact commands were not recovered.
+| Node | OS / Build | Reconstructed IP | Hostname / User | Role in Simulation |
+| :--- | :--- | :--- | :--- | :--- |
+| **Attacker VM** | Kali Linux | `192.168.23.130` | `kali` | Generates disguised executable via `msfvenom`, delivers phishing invoice email, runs `exploit/multi/handler` C2 listener on TCP port `4444` |
+| **Victim VM** | Windows 10 x64 (Build 19045) | `192.168.23.141` | `DESKTOP-4K30A40` / `ACERNITRO` | Receives spear-phishing email, executes disguised attachment, opens reverse Meterpreter session (`:59860` → `:4444`), undergoes Desktop file encryption |
+| **Virtual Switch** | VMware Host-Only (`VMnet1`) | `192.168.23.0/24` | — | Air-gapped L2/L3 segment preventing accidental egress to LAN or Internet |
 
-## Safety boundaries
+---
 
-- Use only virtual machines that you own or are explicitly authorized to test.
-- Keep the lab isolated from home, school, and corporate networks.
-- Prefer VMware Host-only networking for a fully contained lab.
-- Do not use Bridged mode for malware or ransomware demonstrations.
-- Disable shared folders, clipboard sharing, drag-and-drop, and unnecessary host integration during testing.
-- Take a clean VM snapshot before each exercise.
-- Do not use real customer data, real credentials, or real third-party email accounts.
-- Do not upload executable payloads or ransomware samples to this repository.
+## Simulation Workflow Summary
 
-## Recommended evidence to add if the lab is rebuilt
+| Phase | MITRE Technique | Activity in Lab | Artifacts |
+| :--- | :--- | :--- | :--- |
+| **1. Payload Creation** | `T1027`, `T1036.007` | `msfvenom` creates `windows/meterpreter/reverse_tcp` payload encoded with `x86/shikata_ga_nai` (5 iterations) and double-extension disguise | `File_hoa_don_chuyen_khoan_2026.pdf.exe` *(not retained in repo)* |
+| **2. C2 Listener** | `T1071`, `T1095` | `msfconsole -r handler.rc` starts background listener on `192.168.23.130:4444` | [`../lab-simulation/handler.rc`](../lab-simulation/handler.rc) |
+| **3. Spear-Phishing** | `T1566.001` | Fake logistics invoice email (`[URGENT] Invoice #AS-99281 — Global Logistics Services`) sent to victim | Visible in [`../demo/Demo_Full.mp4`](../demo/Demo_Full.mp4) |
+| **4. Execution & C2** | `T1204.002`, `T1082`, `T1059` | Victim opens attachment → Meterpreter session established → `sysinfo` and interactive `cmd.exe` shell | Reconstructed in [`../lab-simulation/lab-walkthrough.md`](../lab-simulation/lab-walkthrough.md) |
+| **5. Ransomware Impact** | `T1486` | PoC encryptor appends `.encrypted` to `.txt`, `.docx`, `.xlsx`, `.pdf`, `.dwg` files on Desktop and displays lock-screen ransom UI | Visible in [`../demo/Demo_Full.mp4`](../demo/Demo_Full.mp4) |
 
-- VMware VM settings screenshots (vCPU, RAM, disk, firmware, virtual NICs).
-- Virtual Network Editor screenshots showing VMnet mode and subnet.
-- IP configuration from each guest.
-- A network diagram showing permitted flows.
-- Firewall policy export or screenshots.
-- Windows event logging and endpoint-security settings.
-- Backup / snapshot procedure and a successful restore-test record.
-- A short test log containing test date, objective, expected result, and observed result.
+---
 
-Never publish secrets, live credentials, public IPs, personal data, or unredacted logs.
+## Safety & Isolation Controls
+
+1. **Strict Network Air-Gap:** Both virtual machines were attached exclusively to a Host-Only network (`VMnet1`) without default gateway or DNS forwarding to the physical host's internet connection.
+2. **Synthetic Test Data Only:** All encrypted files on the Windows 10 Desktop (`TaiLieu.txt`, `BaoCao.docx`, `DuLieu.xlsx`, `HoaDon.pdf`, `ThietKe.dwg`) were dummy sample files containing no real personal or corporate data.
+3. **No Live Malware Binaries Distributed:** In accordance with ethical research standards and GitHub Acceptable Use Policies, `.exe`, `.dll`, and raw VM disk images (`.vmdk`) are excluded via [`.gitignore`](../.gitignore).
+
+---
+
+## Related Documentation
+
+- **Step-by-Step VMware Lab Setup:** [VMware Workstation Setup](vmware-workstation-setup.md)
+- **Commands & Execution Walkthrough:** [`../lab-simulation/lab-walkthrough.md`](../lab-simulation/lab-walkthrough.md)
+- **Archive & Scope Limitations:** [Recovery & Limitations](recovery-and-limitations.md)
+- **Back to Index:** [Documentation Index](README.md)

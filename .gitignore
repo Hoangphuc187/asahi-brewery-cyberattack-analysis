@@ -1,0 +1,38 @@
+# OS & Editor temporary files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+*.bak
+~$*
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Raw VM & large binary artifacts (excluded — lost due to malware incident)
+*.vmdk
+*.vmx
+*.vmxf
+*.vmsd
+*.vmsn
+*.ova
+*.iso
+*.nvram
+*.vmem
+
+# Compiled PoC binaries (excluded for safety)
+*.exe
+*.dll
+*.msi
+*.bin
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# Logs
+*.log

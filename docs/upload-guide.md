@@ -1,31 +1,116 @@
-# Repository Maintenance and Optional Binary Upload
+# 🚀 GitHub Upload & Large File Guide
 
-## Current repository layout
+> Step-by-step instructions for publishing this repository to GitHub, verifying `.gitignore` safety exclusions, handling binary media files (`Demo_Full.mp4`, `.pdf`, `.docx`), and embedding an inline playable demo video.
 
-- `presentations/ASAHI_BREWERY_CYBERATTACK.pdf` is the recovered presentation PDF stored directly in GitHub.
-- `reports/README.md` links to the original Google Docs report. The unredacted DOCX is not duplicated in the public repository because its cover contains student identification numbers.
-- `demo/README.md` links to the original MP4 recording in Google Drive. The video is linked externally to avoid storing a large binary in Git history.
-- `assets/diagrams/` contains vector diagrams created for this reconstructed project portfolio.
-- `docs/` contains the technical analysis, infrastructure proposal, lab rebuild guide, and recovery limitations.
+---
 
-## Optional: mirror the report or video into GitHub
+## 1. Repository File Size Audit
 
-Only do this after confirming the public release is appropriate.
+GitHub enforces a **50 MB warning threshold** and a **100 MB hard per-file limit** for standard Git pushes. All files in this repository fit within standard GitHub limits out of the box:
 
-1. Download the report or video from its Google Drive link.
-2. For the report, create a public copy with student identification numbers removed and obtain the contributors' approval.
-3. Open the repository and navigate to the appropriate folder.
-4. Choose **Add file → Upload files**, select the file, and commit it.
-5. Update this guide and the README so the repository path points to the new file.
+| File | Path | Approximate Size | GitHub Standard Push (`<100 MB`) | Git LFS Recommended? |
+| :--- | :--- | :---: | :---: | :--- |
+| **Lab Demo Video** | `demo/Demo_Full.mp4` | **~18.6 MB** | ✅ Supported | Optional *(recommended if adding more videos)* |
+| **Presentation Slides** | `docs/ASAHI_BREWERY_CYBERATTACK_Slides.pdf` | **~3.7 MB** | ✅ Supported | Not required |
+| **Technical Report** | `docs/Bao_Cao_ASAHI_BREWERY_CYBERATTACK.docx` | **~1.34 MB** | ✅ Supported | Not required |
+| **Analytical Diagrams** | `diagrams/*.png` *(8 files)* | **~0.03–0.59 MB each** | ✅ Supported | Not required |
 
-The browser upload limit is 25 MiB per file. The original demo recording is approximately 18.6 MB, so it is below that limit. Avoid committing VM disk images, memory dumps, executable payloads, secrets, credentials, or unredacted logs.
+---
 
-## Optional Git command line
+## 2. Pre-Upload Safety Checklist
 
-After downloading and reviewing the files, copy them into the appropriate folders and run:
+Before running `git add .`, verify that **no live malware binaries, VM disks, or credentials** exist in the working directory. The included [`.gitignore`](../.gitignore) automatically excludes:
 
-~~~bash
-git add reports demo presentations assets docs README.md
-git commit -m "Update recovered Asahi project portfolio"
-git push origin main
-~~~
+- **VMware virtual machine images:** `*.vmdk`, `*.vmx`, `*.vmsn`, `*.ova`, `*.iso`, `*.vmem`
+- **Executable / PoC binaries:** `*.exe`, `*.dll`, `*.msi`, `*.bin`
+- **Temporary Office & OS files:** `~$*`, `.DS_Store`, `Thumbs.db`, `.env`
+
+Run a quick dry-run check from PowerShell inside `Asahi-Brewery-Cyberattack-Analysis/`:
+
+```powershell
+git status --ignored
+```
+
+---
+
+## 3. Option A — One-Click Upload on Windows (`push_to_github.bat`)
+
+1. Create an **empty** repository on GitHub (do *not* initialize with a README or license if pushing an existing commit history), e.g.:
+   `https://github.com/<your-username>/Asahi-Brewery-Cyberattack-Analysis.git`
+2. *(If pushing to your own GitHub account)* Edit line 25 of [`../push_to_github.bat`](../push_to_github.bat) to match your repository URL:
+   ```bat
+   git remote add origin https://github.com/<your-username>/Asahi-Brewery-Cyberattack-Analysis.git 2>nul
+   ```
+3. Double-click `push_to_github.bat` or run it from PowerShell:
+   ```powershell
+   .\push_to_github.bat
+   ```
+
+---
+
+## 4. Option B — Manual Git CLI Workflow
+
+Open PowerShell or Terminal inside the `Asahi-Brewery-Cyberattack-Analysis` directory and run:
+
+```bash
+# 1. Initialize repository
+git init
+
+# 2. Stage all documentation, diagrams, lab scripts, and demo media
+git add .
+
+# 3. Verify staged files (confirm no .exe or .vmdk files appear)
+git status
+
+# 4. Commit changes
+git commit -m "docs: add complete Asahi Brewery cyberattack analysis, diagrams, lab walkthrough, and docs suite"
+
+# 5. Rename default branch to main
+git branch -M main
+
+# 6. Link remote repository and push
+git remote add origin https://github.com/Hoangphuc187/asahi-brewery-cyberattack-analysis.git
+git push -u origin main
+```
+
+> **Note:** If the remote repository already exists and has divergent commits on GitHub, pull/rebase first (`git pull --rebase origin main`) before running `git push -u origin main`.
+
+---
+
+## 5. Optional — Using Git LFS for Video / Binary Assets
+
+If you plan to add higher-bitrate recordings (`>50 MB`) in the future, configure **Git Large File Storage (Git LFS)** *before* committing `.mp4` files:
+
+```bash
+# Install Git LFS hooks once on your machine
+git lfs install
+
+# Track MP4 recordings via Git LFS
+git lfs track "*.mp4"
+
+# Ensure .gitattributes is staged first
+git add .gitattributes
+git add .
+git commit -m "chore: track demo video via Git LFS"
+git push -u origin main
+```
+
+---
+
+## 6. Rendering an Inline Video Player on GitHub
+
+GitHub Markdown links to `demo/Demo_Full.mp4` download the file when clicked, whereas **GitHub User-Attachments URLs** render a native HTML5 video player directly inside `README.md`:
+
+1. Push the repository to GitHub first.
+2. Open `README.md` on GitHub.com and click the **Edit (pencil)** icon.
+3. Scroll to the **`## 🎥 Live Demo`** section.
+4. Drag and drop `demo/Demo_Full.mp4` from your computer directly into the Markdown editor text area.
+5. Wait for GitHub to upload and generate a `https://github.com/user-attachments/assets/...` URL on its own line, then click **Commit changes**.
+
+---
+
+## Related Documentation
+
+- **Lab Environment Overview:** [Lab Environment](lab-environment.md)
+- **Archive & Recovery Status:** [Recovery & Limitations](recovery-and-limitations.md)
+- **Back to Index:** [Documentation Index](README.md)

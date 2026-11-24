@@ -1,150 +1,125 @@
-# VMware Workstation Lab Setup — Rebuild Guide
+# 🖥️ VMware Workstation Lab Setup Guide
 
-> This guide is a **future rebuild procedure**, not a record of the lost original network configuration. The actual VMnet IDs, IP addresses, VLAN IDs, and firewall rules used in the original project were not recovered.
+> Step-by-step instructions to build an **air-gapped VMware Workstation Host-Only laboratory** from scratch for safely reproducing the educational Spear-Phishing & C2 simulation documented in [`lab-environment.md`](lab-environment.md) and [`../lab-simulation/lab-walkthrough.md`](../lab-simulation/lab-walkthrough.md).
 
-## 1. Important distinction: VMnet separation versus VLAN tagging
+> [!CAUTION]
+> **Mandatory Isolation Rule:** Never attach the Attacker or Victim VM to **Bridged** or **NAT** mode while generating or testing payloads. All steps below use an isolated **Host-Only (`VMnet1`)** virtual switch with no external gateway so traffic cannot leave the virtual subnet.
 
-VMware Workstation's virtual network options include Bridged, NAT, Host-only, Custom, and LAN Segment. Its Virtual Network Editor can also create multiple separate Host-only networks.
+---
 
-That means a lab can be divided into isolated virtual network segments using different VMnet networks. However, a VMnet label such as VMnet2 or VMnet3 is **not by itself proof of an IEEE 802.1Q VLAN**. Only claim that VLAN tagging was implemented when a VLAN-aware switching component and its tag configuration are actually present and tested.
+## 1. Host Prerequisites
 
-For a small Workstation lab, describe the design as **isolated VMnet network segments / logical security zones**. For a true VLAN exercise, add a VLAN-aware virtual switch or a network-emulation platform and document the 802.1Q tags.
+| Requirement | Minimum Specification | Recommended Specification |
+| :--- | :--- | :--- |
+| **Hypervisor** | VMware Workstation Pro / Player 17+ | VMware Workstation Pro 17.5+ *(supports Snapshots & Virtual Network Editor)* |
+| **Host CPU & RAM** | 4 cores / 8 GB RAM | 8+ cores / 16 GB RAM |
+| **Free Disk Space** | 60 GB SSD | 100+ GB NVMe SSD |
+| **Attacker Image** | Kali Linux 2024.x / 2025.x Pre-built VMware VM or ISO | Official Kali Linux VMware image (`kali.org`) |
+| **Victim Image** | Windows 10 22H2 x64 Evaluation ISO | Windows 10 Enterprise Evaluation x64 (Build 19045) |
 
-Official references:
-- Broadcom KB — Using the Virtual Network Editor in VMware Workstation: https://knowledge.broadcom.com/external/article/339371/using-the-virtual-network-editor-in-vmwa.html
-- VMware Workstation Pro documentation: https://docs.vmware.com/en/VMware-Workstation-Pro/
+---
 
-## 2. Basic two-VM isolated lab
+## 2. Configure the Isolated Host-Only Network (`192.168.23.0/24`)
 
-This is the simplest version to rebuild the visible demo environment.
+1. Open **VMware Workstation Pro** as Administrator and navigate to **Edit → Virtual Network Editor** *(click **Change Settings** if prompted for UAC elevation)*.
+2. Select **`VMnet1`** and configure the following settings:
+   - **VMnet Information:** Select **Host-only (connect VMs internally in a private network)**
+   - **Connect a host virtual adapter to this network:** *Uncheck* (recommended for strict host isolation) or firewall `VMware Network Adapter VMnet1` on the physical host
+   - **Use local DHCP service to distribute IP address to VMs:** *Checked*
+   - **Subnet IP:** `192.168.23.0`
+   - **Subnet Mask:** `255.255.255.0`
+3. Click **DHCP Settings...** and verify the DHCP range covers `192.168.23.128` – `192.168.23.254` (matching the lab addresses `.130` and `.141`).
+4. Click **Apply** and **OK**.
 
-### Suggested logical layout
+---
 
-| VM | Operating system | Example IP | Network |
-|---|---|---:|---|
-| Red-team VM | Kali Linux | 192.168.56.10/24 | Host-only VMnet |
-| Target VM | Windows 10 x64 | 192.168.56.20/24 | Same Host-only VMnet |
+## 3. Provision Virtual Machine 1 — Kali Linux (Attacker)
 
-The IP addresses above are examples for a new build, not recovered project settings.
+1. Import the official Kali Linux `.vmx` appliance (or install from ISO) with:
+   - **Memory:** 2–4 GB RAM
+   - **Processors:** 2 vCPUs
+   - **Network Adapter:** **Custom: Specific virtual network → `VMnet1 (Host-only)`** *(or select **Host-only**)*
+   - Remove any secondary network adapters, shared folders, and drag-and-drop/copy-paste integration with the physical host (`VM → Settings → Options → Guest Isolation → Uncheck Enable drag and drop / Enable copy and paste`).
+2. Boot Kali Linux and configure or verify IP `192.168.23.130`:
+   ```bash
+   # Check assigned IP on eth0
+   ip -4 addr show eth0
 
-### VMware configuration steps
+   # (Optional) Assign static IP 192.168.23.130/24 if DHCP assigns a different address
+   sudo ip addr flush dev eth0
+   sudo ip addr add 192.168.23.130/24 dev eth0
+   sudo ip link set eth0 up
+   ```
+3. Verify required simulation tools are present on Kali:
+   ```bash
+   msfvenom --version
+   msfconsole --version
+   ```
+4. Copy [`../lab-simulation/handler.rc`](../lab-simulation/handler.rc) (or recreate its 6 lines) inside `/home/kali/lab/handler.rc`.
 
-1. Power off both VMs.
-2. Open **Edit → Virtual Network Editor** in VMware Workstation. Use administrator privileges if the editor requests them.
-3. Add an unused VMnet, for example **VMnet2**.
-4. Set the new network to **Host-only**.
-5. For stronger isolation, clear **Connect a host virtual adapter to this network** if that option is available and the host does not need direct guest access.
-6. Disable the local DHCP service if you want to use the example static IP plan below. Otherwise, document the DHCP range that you actually configure.
-7. Open each VM's **VM → Settings → Network Adapter** page.
-8. Select **Custom: Specific virtual network** and choose **VMnet2** for both Kali and Windows.
-9. Do not select **Bridged**. Do not attach the test VMs to the normal home, school, or company LAN.
-10. Start the VMs and configure their example static addresses. Keep the default gateway and DNS empty unless the lab has a documented, controlled need for them.
-11. Verify that both guests are on the intended subnet and can communicate only as required for the authorized lab exercise.
-12. Take clean snapshots before testing and revert after the exercise.
+---
 
-### Evidence to capture
+## 4. Provision Virtual Machine 2 — Windows 10 x64 (Victim)
 
-- Virtual Network Editor showing VMnet2 is Host-only.
-- Each VM's Network Adapter settings showing Custom: VMnet2.
-- Kali output from `ip -br addr` and `ip route`.
-- Windows output from `ipconfig /all`.
-- A short verification note showing the expected connectivity and blocked external connectivity.
+1. Create a new VM from the Windows 10 x64 ISO:
+   - **Memory:** 4 GB RAM
+   - **Processors:** 2 vCPUs
+   - **Hard Disk:** 40 GB (split into multiple files)
+   - **Network Adapter:** **`VMnet1 (Host-only)`**
+   - **Guest Isolation:** Disable **Shared Folders**, **Drag and Drop**, and **Copy and Paste** to protect the host OS.
+2. Complete offline Windows 10 setup (*"I don't have internet"* → local account).
+3. Verify or set IP `192.168.23.141` in **Command Prompt (Admin)**:
+   ```cmd
+   netsh interface ip set address name="Ethernet0" static 192.168.23.141 255.255.255.0
+   ipconfig
+   ```
+4. Create synthetic non-sensitive dummy files on `Desktop` to observe encryption behavior safely:
+   ```powershell
+   cd $env:USERPROFILE\Desktop
+   "Sample logistics order manifest" | Out-File TaiLieu.txt -Encoding utf8
+   "Dummy quarterly report"          | Out-File BaoCao.docx -Encoding utf8
+   "Dummy warehouse inventory"       | Out-File DuLieu.xlsx -Encoding utf8
+   "Dummy carrier invoice"           | Out-File HoaDon.pdf  -Encoding utf8
+   "Dummy CAD layout"                | Out-File ThietKe.dwg -Encoding utf8
+   ```
+5. *(Lab-only configuration)* If demonstrating raw un-evaded `msfvenom` payloads for classroom visualization, configure controlled lab exclusions inside the isolated VM only **after** verifying complete network isolation in Section 5.
 
-## 3. Expanded multi-zone lab
+---
 
-When the two-VM version is working, expand it into separate logical security zones. The table below is a proposed design for a future implementation.
+## 5. Verify Connectivity & Air-Gap Isolation
 
-| Logical zone | Example VMnet | Example subnet | Connected systems |
-|---|---|---|---|
-| Red-Team | VMnet2 | 10.10.20.0/24 | Kali Linux |
-| Target | VMnet3 | 10.10.30.0/24 | Windows 10 x64 |
-| Monitoring | VMnet4 | 10.10.40.0/24 | Log collector / monitoring VM |
-| Backup | VMnet5 | 10.10.50.0/24 | Backup repository or recovery VM |
-| Management | VMnet6 | 10.10.60.0/24 | Authorized administration only |
+Run both checks before starting any simulation step:
 
-These VMnet names and subnets are illustrative. Change them if they overlap with networks already in use on the host.
+1. **Internal Host-Only Reachability (Must Succeed):**
+   - From Kali (`192.168.23.130`):
+     ```bash
+     ping -c 3 192.168.23.141
+     ```
+2. **External Internet Isolation (Must Fail):**
+   - From both Kali and Windows 10:
+     ```bash
+     ping -c 2 8.8.8.8
+     # Expected: "Network is unreachable" / 100% packet loss
+     ```
 
-### Suggested virtual firewall placement
+> [!IMPORTANT]
+> If `ping 8.8.8.8` replies on either VM, **STOP IMMEDIATELY** and re-check VMware adapter settings in Section 2 before generating any payload.
 
-Use a dedicated virtual firewall/router with one network adapter connected to each required Host-only VMnet. The firewall should route between zones only when a documented rule permits it.
+---
 
-Example high-level policy:
+## 6. Take Clean Baseline Snapshots & Post-Lab Teardown
 
-| Source | Destination | Default policy |
-|---|---|---|
-| Red-Team | Target | Deny by default; temporary test-specific access only |
-| Red-Team | Management | Deny |
-| Red-Team | Backup | Deny |
-| Target | Monitoring | Allow only required log forwarding |
-| Target | Backup | Deny by default |
-| Management | VM management | Allow only from an authorized admin endpoint |
-| Any lab zone | Physical LAN | Deny |
-| Any lab zone | Public Internet | Deny by default; controlled temporary updates only |
+1. **Before running the simulation:** Shut down or pause both VMs and take a clean snapshot in VMware Workstation (`VM → Snapshot → Take Snapshot...` → name: `00-Clean-Isolated-Baseline`).
+2. **Follow the simulation walkthrough:** Execute the steps documented in [`../lab-simulation/lab-walkthrough.md`](../lab-simulation/lab-walkthrough.md).
+3. **Safe Post-Lab Cleanup:**
+   - Revert both VMs directly to `00-Clean-Isolated-Baseline` (`VM → Snapshot → Revert to Snapshot`) rather than copying artifacts out to the host machine.
+   - Never transfer `.exe` payloads or encrypted artifacts from the guest VMs onto your physical workstation.
 
-The backup zone should not be reachable using the same credentials or network path that a compromised test VM can access.
+---
 
-## 4. Example VM resource sizing
+## Related Documentation
 
-The following is a suggested starting point for a student lab. It is not the original VM sizing.
-
-| VM | vCPU | RAM | Disk |
-|---|---:|---:|---:|
-| Kali Linux | 2 | 4 GB | 40 GB |
-| Windows 10 x64 | 2 | 4–8 GB | 60 GB |
-| Virtual firewall (optional) | 1–2 | 1–2 GB | 10 GB |
-| Log collector (optional) | 2 | 4 GB | 60 GB |
-
-Tune the values to the physical host's capacity. Keep adequate free space for snapshots and backup exports.
-
-## 5. Backup and rollback procedure
-
-A snapshot is a convenience for reverting a lab VM. It is not an independent backup and should not be the only recovery method.
-
-1. Build and patch a clean baseline VM.
-2. Take a named pre-exercise snapshot.
-3. Export or copy a backup of the VM to storage outside the test network.
-4. Maintain at least one offline or immutable copy that a compromised guest cannot alter.
-5. Use separate credentials for backup administration.
-6. Perform a restore test and record the date, duration, boot result, and validation checks.
-7. After a demonstration, revert the VM to its clean baseline and verify that the test state is removed.
-
-## 6. Logging and test evidence
-
-For an infrastructure portfolio, retain evidence that demonstrates configuration and verification rather than just screenshots of tools running.
-
-| Area | Evidence |
-|---|---|
-| Virtualization | VM settings screenshots: CPU, RAM, disk, NIC type |
-| Network | Virtual Network Editor screenshots and guest IP configuration |
-| Segmentation | Firewall interface map, policy table, allow/deny test results |
-| Windows | Security log and PowerShell logging settings |
-| Monitoring | Example log events received by the collector |
-| Backup | Backup job result and a successful restore-test record |
-| Operations | Short test plan, test date, expected result, actual result, and cleanup confirmation |
-
-Redact usernames, personal paths, public addresses, secrets, tokens, and credentials before publishing screenshots.
-
-## 7. Implementation checklist
-
-- [ ] Create Kali Linux and Windows 10 x64 VMs.
-- [ ] Create a dedicated Host-only VMnet.
-- [ ] Attach only the two lab VMs to the isolated network for the initial test.
-- [ ] Record real IP addressing and network settings.
-- [ ] Disable unnecessary shared folders, shared clipboard, and drag-and-drop.
-- [ ] Take a clean baseline snapshot.
-- [ ] Verify that the lab cannot reach the physical LAN.
-- [ ] Add a virtual firewall before introducing separate zones.
-- [ ] Create distinct VMnet networks for Target, Monitoring, Management, and Backup.
-- [ ] Configure and test default-deny inter-zone rules.
-- [ ] Configure log forwarding and confirm receipt.
-- [ ] Create an independent offline/immutable backup.
-- [ ] Perform and document a restore test.
-- [ ] Update this document with actual screenshots and tested values.
-
-## 8. How to describe the rebuilt lab on a résumé
-
-Only after you have performed and captured the work, a truthful project bullet could look like this:
-
-> Built an isolated VMware Workstation security lab with Kali Linux and Windows 10; separated Red-Team, Target, and Monitoring networks using dedicated Host-only VMnets; documented firewall allow/deny policies, Windows event logging, and offline VM backup/restore validation.
-
-If you have not yet implemented the expanded segmentation and backup, do not use that sentence as a completed achievement. Describe it as a proposed design until you have the evidence.
+- **Lab Topology & Demo Evidence:** [Lab Environment](lab-environment.md)
+- **Simulation Commands & `handler.rc`:** [`../lab-simulation/lab-walkthrough.md`](../lab-simulation/lab-walkthrough.md)
+- **Post-Lab Incident Lessons:** [Recovery & Limitations](recovery-and-limitations.md)
+- **Back to Index:** [Documentation Index](README.md)
