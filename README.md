@@ -34,6 +34,12 @@ The attack-chain graphic is a high-level analytical reconstruction from the subm
 
 The report also contains MITRE ATT&CK technique mapping, a CIA Triad assessment, and a 5 × 5 likelihood-impact risk matrix. See [docs/attack-chain-and-mitre.md](docs/attack-chain-and-mitre.md) and [docs/risk-assessment.md](docs/risk-assessment.md).
 
+### Recorded lab demonstration
+
+![Recorded VMware lab demonstration workflow](assets/diagrams/demo-workflow.svg)
+
+The original MP4 is available here: [Watch the lab demonstration](https://drive.google.com/file/d/1euM46GtrGGJ4G-XNy_ITC11I61_uqxKK/view).
+
 ### Proposed VMware lab segmentation
 
 ![Proposed isolated VMware lab topology](assets/diagrams/lab-topology-proposed.svg)
@@ -77,12 +83,14 @@ asahi-brewery-cyberattack-analysis/
 │   ├── README.md
 │   └── diagrams/
 │       ├── attack-chain.svg
+│       ├── demo-workflow.svg
 │       ├── defense-in-depth.svg
 │       ├── lab-topology-proposed.svg
 │       └── nist-csf.svg
 ├── demo/
 │   └── README.md
 ├── docs/
+│   ├── README.md
 │   ├── attack-chain-and-mitre.md
 │   ├── lab-environment.md
 │   ├── proposed-infrastructure.md
@@ -91,6 +99,7 @@ asahi-brewery-cyberattack-analysis/
 │   ├── upload-guide.md
 │   └── vmware-workstation-setup.md
 ├── presentations/
+│   ├── README.md
 │   └── ASAHI_BREWERY_CYBERATTACK.pdf
 └── reports/
     └── README.md
