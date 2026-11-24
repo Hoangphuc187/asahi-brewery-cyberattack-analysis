@@ -22,31 +22,31 @@ The following previews are **direct page renders from the original presentation 
   <tr>
     <td width="50%">
       <strong>Slide 6 — Attack Chain</strong><br/>
-      <a href="../blob/main/presentations/ASAHI_BREWERY_CYBERATTACK.pdf"><img src="assets/slides/slide-06-attack-chain.webp" alt="Original slide 6: Attack Chain" width="100%"/></a>
+      <a href="https://github.com/Hoangphuc187/asahi-brewery-cyberattack-analysis/blob/main/presentations/ASAHI_BREWERY_CYBERATTACK.pdf"><img src="assets/slides/slide-06-attack-chain.webp" alt="Original slide 6: Attack Chain" width="100%"/></a>
     </td>
     <td width="50%">
       <strong>Slide 7 — MITRE ATT&CK</strong><br/>
-      <a href="../blob/main/presentations/ASAHI_BREWERY_CYBERATTACK.pdf"><img src="assets/slides/slide-07-mitre-attack.webp" alt="Original slide 7: MITRE ATT&CK" width="100%"/></a>
+      <a href="https://github.com/Hoangphuc187/asahi-brewery-cyberattack-analysis/blob/main/presentations/ASAHI_BREWERY_CYBERATTACK.pdf"><img src="assets/slides/slide-07-mitre-attack.webp" alt="Original slide 7: MITRE ATT&CK" width="100%"/></a>
     </td>
   </tr>
   <tr>
     <td width="50%">
       <strong>Slide 8 — CIA Triad</strong><br/>
-      <a href="../blob/main/presentations/ASAHI_BREWERY_CYBERATTACK.pdf"><img src="assets/slides/slide-08-cia-triad.webp" alt="Original slide 8: CIA Triad" width="100%"/></a>
+      <a href="https://github.com/Hoangphuc187/asahi-brewery-cyberattack-analysis/blob/main/presentations/ASAHI_BREWERY_CYBERATTACK.pdf"><img src="assets/slides/slide-08-cia-triad.webp" alt="Original slide 8: CIA Triad" width="100%"/></a>
     </td>
     <td width="50%">
       <strong>Slide 9 — Risk Matrix</strong><br/>
-      <a href="../blob/main/presentations/ASAHI_BREWERY_CYBERATTACK.pdf"><img src="assets/slides/slide-09-risk-matrix.webp" alt="Original slide 9: Risk Matrix" width="100%"/></a>
+      <a href="https://github.com/Hoangphuc187/asahi-brewery-cyberattack-analysis/blob/main/presentations/ASAHI_BREWERY_CYBERATTACK.pdf"><img src="assets/slides/slide-09-risk-matrix.webp" alt="Original slide 9: Risk Matrix" width="100%"/></a>
     </td>
   </tr>
   <tr>
     <td width="50%">
       <strong>Slide 10 — NIST Cybersecurity Framework</strong><br/>
-      <a href="../blob/main/presentations/ASAHI_BREWERY_CYBERATTACK.pdf"><img src="assets/slides/slide-10-nist-csf.webp" alt="Original slide 10: NIST Cybersecurity Framework" width="100%"/></a>
+      <a href="https://github.com/Hoangphuc187/asahi-brewery-cyberattack-analysis/blob/main/presentations/ASAHI_BREWERY_CYBERATTACK.pdf"><img src="assets/slides/slide-10-nist-csf.webp" alt="Original slide 10: NIST Cybersecurity Framework" width="100%"/></a>
     </td>
     <td width="50%">
       <strong>Slide 14 — Five-Layer Security Model</strong><br/>
-      <a href="../blob/main/presentations/ASAHI_BREWERY_CYBERATTACK.pdf"><img src="assets/slides/slide-14-defense-in-depth.webp" alt="Original slide 14: Five-Layer Security Model" width="100%"/></a>
+      <a href="https://github.com/Hoangphuc187/asahi-brewery-cyberattack-analysis/blob/main/presentations/ASAHI_BREWERY_CYBERATTACK.pdf"><img src="assets/slides/slide-14-defense-in-depth.webp" alt="Original slide 14: Five-Layer Security Model" width="100%"/></a>
     </td>
   </tr>
 </table>
